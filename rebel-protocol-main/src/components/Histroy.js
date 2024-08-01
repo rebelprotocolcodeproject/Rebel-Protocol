@@ -11,7 +11,7 @@ import { readContract } from "@wagmi/core";
 import { contractABI } from "@/utils/abi";
 import { config } from "@/utils/config";
 import { useAccount } from "wagmi";
-export default function Histroy({histroyPopoverHandler}) {
+export default function Histroy({ histroyPopoverHandler }) {
   const { address, isConnected } = useAccount();
   const [totalBNB, setTotalBNB] = useState();
   const [totalUSDT, setTotalUSDT] = useState();
@@ -20,7 +20,7 @@ export default function Histroy({histroyPopoverHandler}) {
   const userHistory = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x4Da52cB50C7D89A67431C43ec843AabdE97EcbA2",
+      address: "0x1357eBF9a24daa14f40B4055884b5736C76a7222",
       functionName: "users",
       args: [address],
     });
@@ -40,18 +40,18 @@ export default function Histroy({histroyPopoverHandler}) {
       <div className='fixed top-0 bottom-0 left-0 right-0 bg-black/70  h-full z-50 flex justify-center'>
         <div className='relative w-[90%]  md:w-[55%] lg:w-[40%] xl:w-[30%] mt-16 md:mt-20 bg-[#0f0f11] h-fit border border-[#cc3cd9] shadow-2xl p-3'>
           <div className="absolute right-2 top-2 text-base p-2 border border-stone-500" onClick={histroyPopoverHandler}><CgClose /></div>
-           <h1 className="text-lg md:text-xl lg:text-2xl font-medium text-white text-center pt-10">Transaction Histroy</h1>
+          <h1 className="text-lg md:text-xl lg:text-2xl font-medium text-white text-center pt-10">Transaction Histroy</h1>
           <div className="flex flex-col text-center gap-2 lg:gap-3 py-4 md:py-5 mt-5 rounded-lg  bg-[#cc3cd9]/5">
             <h1 className=" text-sm md:text-base text-white">Total Purchased Tokens</h1>
             <p className="text-[#cc3cd9] text-2xl lg:text-3xl font-semibold">{totalPurchasedToken} $REB</p>
-         </div>
+          </div>
 
 
 
           <div className="flex flex-col text-center gap-3 lg:gap-5 p-4 md:py-5 mt-5 rounded-lg  bg-[#cc3cd9]/5">
             <div className=" flex justify-between">
-            <h1 className="text-sm md:text-base  text-white">Total BNB</h1>
-            <p className="text-[#cc3cd9] text-base md:text-lg font-semibold">{totalBNB}</p>
+              <h1 className="text-sm md:text-base  text-white">Total BNB</h1>
+              <p className="text-[#cc3cd9] text-base md:text-lg font-semibold">{totalBNB}</p>
             </div>
             <div className="flex justify-between ">
               <h1 className="text-sm md:text-base text-white">Total USDT</h1>

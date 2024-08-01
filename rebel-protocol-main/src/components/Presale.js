@@ -25,11 +25,11 @@ import US from "/public/images/otherimages/us_flag.png";
 import Link from "next/link";
 import Image from "next/image";
 import { CustomConnect } from "./CustomConnect";
-import { useAccount , useDisconnect} from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 import { config } from "../utils/config";
 import { contractABI } from "../utils/abi.js";
 import { tokenABI } from "../utils/tokenabi.js";
-import { readContract, simulateContract, writeContract , getBalance } from "@wagmi/core";
+import { readContract, simulateContract, writeContract, getBalance } from "@wagmi/core";
 
 import HowToBuy from "./HowToBuy";
 import { motion } from "framer-motion";
@@ -48,8 +48,8 @@ export default function Presale() {
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const displayAddress = address
-        ? `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
-        : 'No address';
+    ? `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
+    : 'No address';
 
   const [time, setTime] = useState({
     days: 15,
@@ -76,9 +76,9 @@ export default function Presale() {
     };
 
     fetchBNBPrice();
-    const interval = setInterval(fetchBNBPrice, 300000); 
+    const interval = setInterval(fetchBNBPrice, 300000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
 
@@ -165,7 +165,7 @@ export default function Presale() {
   const getRebelCount = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x4Da52cB50C7D89A67431C43ec843AabdE97EcbA2",
+      address: "0x1357eBF9a24daa14f40B4055884b5736C76a7222",
       functionName: "users",
       args: [address],
     });
@@ -183,9 +183,9 @@ export default function Presale() {
         abi: tokenABI,
         functionName: "approve",
         account: address,
-        args: ["0x4Da52cB50C7D89A67431C43ec843AabdE97EcbA2", tokenAmount],
+        args: ["0x1357eBF9a24daa14f40B4055884b5736C76a7222", tokenAmount],
       });
-  
+
       // Execute the transaction
       const approvalTransaction = await writeContract(config, request);
       return approvalTransaction;
@@ -194,11 +194,11 @@ export default function Presale() {
       throw error;
     }
   };
-  
+
   const BuyNow = async () => {
     let args = [];
     let value = "0";
-  
+
     // Convert the amount to the appropriate unit based on the selected currency
     if (selectedCurrency.value === "BNB") {
       // Convert the amount to wei for BNB transactions
@@ -208,22 +208,22 @@ export default function Presale() {
     } else {
       if (parseFloat(numberOfChain) <= 40) {
         alert('Purchase amount must be greater than $40.');
-        return; 
+        return;
       }
       args = [parseUnits(numberOfChain.toString(), 6)];
     }
-  
+
     // Ensure address and selectedCurrency are defined
     if (!address || !selectedCurrency.value) {
       throw new Error("Address or selected currency is not defined");
     }
-  
+
     // Log the current state
     console.log("Address:", address);
     console.log("Selected Currency:", selectedCurrency.value);
     console.log("Args:", args);
     console.log("Value:", value);
-  
+
     try {
 
       // Check if the selected currency is USDT or USDC
@@ -234,11 +234,11 @@ export default function Presale() {
         } else {
           tokenAddress = "0x7A4E40Fa26ca4A383aa63A8916c4D843502aaE2A"; // USDC Address Here
         }
-       await Approve(tokenAddress, args[0]); 
+        await Approve(tokenAddress, args[0]);
       }
       // Simulate the contract transaction to ensure it's likely to succeed
       const { request } = await simulateContract(config, {
-        address: "0x4Da52cB50C7D89A67431C43ec843AabdE97EcbA2",
+        address: "0x1357eBF9a24daa14f40B4055884b5736C76a7222",
         abi: contractABI,
         functionName: buySCFn[selectedCurrency.value],
         account: address,
@@ -247,7 +247,7 @@ export default function Presale() {
       });
       // Execute the buy transaction
       await writeContract(config, request);
-  
+
       console.log("BuyNow transaction confirmed");
     } catch (error) {
       console.error("Failed to execute BuyNow transaction:", error.message);
@@ -257,9 +257,9 @@ export default function Presale() {
       }
     }
   };
-  
 
-  
+
+
 
   // const BuyNow = async () => {
   //   let args = [];
@@ -321,7 +321,7 @@ export default function Presale() {
 
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x4Da52cB50C7D89A67431C43ec843AabdE97EcbA2",
+      address: "0x1357eBF9a24daa14f40B4055884b5736C76a7222",
       functionName: currencySCFn[selectedCurrency.value],
       args: args,
     });
@@ -368,7 +368,7 @@ export default function Presale() {
   const userHistory = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x4Da52cB50C7D89A67431C43ec843AabdE97EcbA2",
+      address: "0x1357eBF9a24daa14f40B4055884b5736C76a7222",
       functionName: "users",
       args: [address],
     });
@@ -381,7 +381,7 @@ export default function Presale() {
     setTotalUSDC(usdcResult);
     setTotalPurchasedToken(totalpurchasedToken);
   };
-  
+
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(address).then(
@@ -398,7 +398,7 @@ export default function Presale() {
     <>
       <div className="relative grid grid-cols-12 gap-y-8 lg:gap-8 mt-12">
 
-  
+
 
         <div className="col-span-12 xl:col-span-6 w-full ">
 
@@ -451,7 +451,7 @@ export default function Presale() {
 
         <div className="col-span-12 relative xl:col-span-6  shadow-lg w-full px-0 sm:px-20 md:px-32 lg:px-20 xl:px-20 ">
 
-        
+
 
 
           <div className="z-40 bg-[#0f0f11] rounded-lg  py-4 px-4 md:px-5">
@@ -675,11 +675,11 @@ export default function Presale() {
                     className="mt-6 text-center w-full rounded-full bg-[#cc3cd9] py-3 text-white text-base md:text-lg  font-medium"
                     disabled={selectedCurrency.value === "BNB" ? parseFloat(numberOfChain) < fortyDollarsInBNB : parseFloat(numberOfChain) < 40 || numberOfChain === ""}
                   >
-                  {
-                    (selectedCurrency.value === "BNB" ? parseFloat(numberOfChain) < fortyDollarsInBNB: parseFloat(numberOfChain) < 40) || numberOfChain === ""
-                    ? "Minimum purchase is $40"
-                    : "Buy Now"
-                  }
+                    {
+                      (selectedCurrency.value === "BNB" ? parseFloat(numberOfChain) < fortyDollarsInBNB : parseFloat(numberOfChain) < 40) || numberOfChain === ""
+                        ? "Minimum purchase is $40"
+                        : "Buy Now"
+                    }
                   </button>
                 )}
               </form>
@@ -687,9 +687,9 @@ export default function Presale() {
           </div>
 
           <div className="bg-[#0f0f11] rounded-lg px-4 md:px-4 mt-3 text-center  flex justify-center cursor-pointer py-5 text-sm md:text-base  font-normal" onClick={histroyPopoverHandler}>
-              History Of Your Transactions
-            </div>
-            {histroyPopover && <Histroy histroyPopoverHandler={histroyPopoverHandler} />}
+            History Of Your Transactions
+          </div>
+          {histroyPopover && <Histroy histroyPopoverHandler={histroyPopoverHandler} />}
 
           <div className=" bg-[#0f0f11] rounded-lg px-4 md:px-4 mt-3">
             <button
