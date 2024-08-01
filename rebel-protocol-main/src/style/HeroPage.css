@@ -1,0 +1,34 @@
+.coin {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+  .cube {
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg);
+    animation: rotateCube 5s linear infinite;
+  }
+  .cube__face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+  }
+
+  .cube__face--front  { transform: rotateY(  0deg) translateZ(50px); }
+  .cube__face--back   { transform: rotateY(180deg) translateZ(50px); }
+  .cube__face--right  { transform: rotateY( 90deg) translateZ(50px); }
+  .cube__face--left   { transform: rotateY(-90deg) translateZ(50px); }
+  .cube__face--top    { transform: rotateX( 90deg) translateZ(50px); }
+  .cube__face--bottom { transform: rotateX(-90deg) translateZ(50px); }
+  
+  @keyframes rotateCube {
+    from {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    to {
+      transform: rotateX(360deg) rotateY(360deg);
+    }
+  }
