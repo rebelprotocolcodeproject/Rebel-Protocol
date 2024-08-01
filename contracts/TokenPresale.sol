@@ -259,7 +259,7 @@ contract Presale is Ownable, ReentrancyGuard {
     }
 
     uint256 public currentStage;
-    uint256 public cardboughtAmount;
+    // uint256 public cardboughtAmount;
     uint256 public totalUsers;
     uint256 public soldToken;
     uint256 public amountRaised;
