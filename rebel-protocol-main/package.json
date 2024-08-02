@@ -1,6 +1,6 @@
 {
   "name": "rebelprotocol",
-  "homepage": "https://github.com/rebelprotocolcodeproject/Rebel-Protocol.git",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "scripts": {
