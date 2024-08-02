@@ -8,7 +8,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import { FaQuestion } from "react-icons/fa";
 import logo from "/public/logo192.png";
 import { IoCopySharp } from "react-icons/io5";
-import metamask from '/public/images/otherimages/metamask.png'
+import metamask from "/public/images/otherimages/metamask.png";
 import BSC from "/public/images/chainlogo/bsc.png";
 import PLG from "/public/images/chainlogo/plg.png";
 import ARB from "/public/images/chainlogo/arb.png";
@@ -29,7 +29,12 @@ import { useAccount, useDisconnect } from "wagmi";
 import { config } from "../utils/config";
 import { contractABI } from "../utils/abi.js";
 import { tokenABI } from "../utils/tokenabi.js";
-import { readContract, simulateContract, writeContract, getBalance } from "@wagmi/core";
+import {
+  readContract,
+  simulateContract,
+  writeContract,
+  getBalance,
+} from "@wagmi/core";
 
 import HowToBuy from "./HowToBuy";
 import { motion } from "framer-motion";
@@ -49,7 +54,7 @@ export default function Presale() {
   const { disconnect } = useDisconnect();
   const displayAddress = address
     ? `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
-    : 'No address';
+    : "No address";
 
   const [time, setTime] = useState({
     days: 15,
@@ -59,19 +64,21 @@ export default function Presale() {
   });
   const [BNBPrice, setBNBPrice] = useState(0);
   const [fortyDollarsInBNB, setFortyDollarsInBNB] = useState(0);
+  const [usdRaised, setUsdRaised] = useState(0);
+  const [percentRaised, setPercentRaised] = useState(0);
 
   useEffect(() => {
     const fetchBNBPrice = () => {
-      fetch('https://api.coincap.io/v2/assets/binance-coin')
-        .then(response => response.json())
-        .then(data => {
+      fetch("https://api.coincap.io/v2/assets/binance-coin")
+        .then((response) => response.json())
+        .then((data) => {
           const currentPrice = data.data.priceUsd;
           setBNBPrice(currentPrice);
           const amountInBNB = 40 / currentPrice;
           setFortyDollarsInBNB(amountInBNB);
         })
-        .catch(error => {
-          console.error('Error fetching data:', error);
+        .catch((error) => {
+          console.error("Error fetching data:", error);
         });
     };
 
@@ -80,7 +87,6 @@ export default function Presale() {
 
     return () => clearInterval(interval);
   }, []);
-
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -148,8 +154,6 @@ export default function Presale() {
   const [currencyAmount, setCurrencyAmount] = useState(0);
   const [userRebelCount, setUserRebelCount] = useState();
 
-
-
   const currencySCFn = {
     BNB: "nativeToToken",
     USDT: "usdtToToken",
@@ -170,7 +174,7 @@ export default function Presale() {
       args: [address],
     });
     console.log(result);
-    const finalResult = result[5] != 0n ? Number((result[5])) / 1e18 : 0;
+    const finalResult = result[5] != 0n ? Number(result[5]) / 1e18 : 0;
     console.log(finalResult);
     setUserRebelCount(finalResult);
   };
@@ -207,7 +211,7 @@ export default function Presale() {
       value = weiEquivalent; // Set the value to send with the transaction, as BNB transactions are payable
     } else {
       if (parseFloat(numberOfChain) <= 40) {
-        alert('Purchase amount must be greater than $40.');
+        alert("Purchase amount must be greater than $40.");
         return;
       }
       args = [parseUnits(numberOfChain.toString(), 6)];
@@ -225,9 +229,11 @@ export default function Presale() {
     console.log("Value:", value);
 
     try {
-
       // Check if the selected currency is USDT or USDC
-      if (selectedCurrency.value === "USDT" || selectedCurrency.value === "USDC") {
+      if (
+        selectedCurrency.value === "USDT" ||
+        selectedCurrency.value === "USDC"
+      ) {
         let tokenAddress;
         if (selectedCurrency.value === "USDT") {
           tokenAddress = "0x7A4E40Fa26ca4A383aa63A8916c4D843502aaE2A"; // USDT Address Here
@@ -257,9 +263,6 @@ export default function Presale() {
       }
     }
   };
-
-
-
 
   // const BuyNow = async () => {
   //   let args = [];
@@ -312,10 +315,10 @@ export default function Presale() {
       return;
     }
     if (selectedCurrency.value === "BNB") {
-      args = [parseUnits(numberOfChain, 18), 2];
+      args = [parseUnits(numberOfChain, 18), 0];
       // args = [parseUnits(numberOfChain, 18)]
     } else {
-      args = [numberOfChain, 2];
+      args = [numberOfChain, 0];
       // args = [parseUnits(numberOfChain, 6), 2]
     }
 
@@ -341,13 +344,6 @@ export default function Presale() {
     }
   }, [selectedCurrency, numberOfChain, isConnected, address]);
 
-  // useEffect(() => {
-  //   if (isConnected) {
-  //     currencyAmountSC();
-  //     console.log(currencyAmount);
-  //   }
-  // }, [selectedCurrency, numberOfChain]);
-
   const [popover, setPopover] = useState(false);
   const togglehandler = () => {
     setPopover(!popover);
@@ -359,11 +355,10 @@ export default function Presale() {
   };
 
   const [width, setWidth] = useState(0);
-  const value = 89;
+  const value = percentRaised;
   useEffect(() => {
     setWidth(value);
   }, [value]);
-
 
   const userHistory = async () => {
     const result = await readContract(config, {
@@ -372,38 +367,47 @@ export default function Presale() {
       functionName: "users",
       args: [address],
     });
-    const bnbResult = result[0] != 0n ? Number((result[0])) / 1e18 : 0;
-    const usdtResult = result[1] != 0n ? Number((result[1])) / 1e6 : 0;
-    const usdcResult = result[2] != 0n ? Number((result[2])) / 1e6 : 0;
-    const totalpurchasedToken = result[5] != 0n ? Number((result[5])) / 1e18 : 0;
+    const bnbResult = result[0] != 0n ? Number(result[0]) / 1e18 : 0;
+    const usdtResult = result[1] != 0n ? Number(result[1]) / 1e6 : 0;
+    const usdcResult = result[2] != 0n ? Number(result[2]) / 1e6 : 0;
+    const totalpurchasedToken = result[5] != 0n ? Number(result[5]) / 1e18 : 0;
     setTotalBNB(bnbResult);
     setTotalUSDT(usdtResult);
     setTotalUSDC(usdcResult);
     setTotalPurchasedToken(totalpurchasedToken);
   };
 
-
   const copyToClipboard = () => {
     navigator.clipboard.writeText(address).then(
       () => {
-        alert('Address copied to clipboard!');
+        alert("Address copied to clipboard!");
       },
       (err) => {
-        console.error('Failed to copy: ', err);
+        console.error("Failed to copy: ", err);
       }
     );
   };
 
+  const getUsdRaised = async () => {
+    const result = await readContract(config, {
+      abi: contractABI,
+      address: "0x1357eBF9a24daa14f40B4055884b5736C76a7222",
+      functionName: "totalRaised",
+    });
+    const finalResult = result != 0n ? Number(result) / 1e6 : 0;
+    const sellPercent = (100 * finalResult) / 2086196;
+    setUsdRaised(finalResult);
+    setPercentRaised(sellPercent.toFixed(2));
+  };
+
+  useEffect(() => {
+    getUsdRaised();
+  }, []);
+
   return (
     <>
       <div className="relative grid grid-cols-12 gap-y-8 lg:gap-8 mt-12">
-
-
-
         <div className="col-span-12 xl:col-span-6 w-full ">
-
-
-
           <h1 className="text-3xl md:text-5xl  xl:text-6xl text-center xl:text-start  text-white font-semibold mb-12 lg:mb-16 lg:mt-7">
             Real-World Asset Tokenized Ecosystem
           </h1>
@@ -450,14 +454,11 @@ export default function Presale() {
         </div>
 
         <div className="col-span-12 relative xl:col-span-6  shadow-lg w-full px-0 sm:px-20 md:px-32 lg:px-20 xl:px-20 ">
-
-
-
-
           <div className="z-40 bg-[#0f0f11] rounded-lg  py-4 px-4 md:px-5">
             <h1 className="text-center text-xl md:text-2xl font-normal ">
               <div className="flex justify-center items-center">
-                Buy <span className="font-bold text-[#cc3cd9] mx-2">Rebel</span> Now!
+                Buy <span className="font-bold text-[#cc3cd9] mx-2">Rebel</span>{" "}
+                Now!
                 {/* <button onClick={disconnect} className="ml-4 py-1 px-3 ">
                   Disconnect
                 </button> */}
@@ -468,24 +469,32 @@ export default function Presale() {
             {/* {displayAddress} */}
             <div className="mt-4 flex relative  bg-[#cc3cd9]/5  rounded-lg   ">
               <div className="flex items-center flex-row gap-2 p-4 md:p-5 ">
-                <Image src={metamask}
+                <Image
+                  src={metamask}
                   alt="metamask"
                   className="w-7 h-7 mr-2"
                   width={100}
                   height={100}
-                  priority />
+                  priority
+                />
                 <h1 className="text-[#cc3cd9]  text-base md:text-lg font-semibold break-all">
                   {address ? address.slice(0, 10) : "No address"}...
                 </h1>
               </div>
-              <div className="text-lg absolute p-3 right-0 bg-[#cc3cd9]/15 flex items-center h-full rounded-r-lg   cursor-pointer" onClick={copyToClipboard}>
+              <div
+                className="text-lg absolute p-3 right-0 bg-[#cc3cd9]/15 flex items-center h-full rounded-r-lg   cursor-pointer"
+                onClick={copyToClipboard}
+              >
                 <IoCopySharp />
               </div>
             </div>
 
             <p className="mt-4 text-center text-sm md:text-base font-medium">
               USD Raise:{" "}
-              <span className="font-extrabold"> $2,079,416 / $2,086,196 </span>
+              <span className="font-extrabold">
+                {" "}
+                ${usdRaised.toFixed(2)} / $2,086,196{" "}
+              </span>
             </p>
 
             <div className=" my-1 flex flex-col items-center justify-center">
@@ -531,12 +540,12 @@ export default function Presale() {
               Crypto
             </div>
 
-
             <div className="mt-6">
               <form onSubmit={handleSubmit}>
                 <div className="relative inline-block w-full">
                   <div
-                    className={`block w-full p-3 md:p-4 text-base flex items-center justify-between border-2 rounded-lg bg-black border-[#cc3cd9]`}                    >
+                    className={`block w-full p-3 md:p-4 text-base flex items-center justify-between border-2 rounded-lg bg-black border-[#cc3cd9]`}
+                  >
                     <div className="flex items-center">
                       {selectedChain.imgSrc && (
                         <Image
@@ -673,23 +682,32 @@ export default function Presale() {
                     onClick={BuyNow}
                     type="button"
                     className="mt-6 text-center w-full rounded-full bg-[#cc3cd9] py-3 text-white text-base md:text-lg  font-medium"
-                    disabled={selectedCurrency.value === "BNB" ? parseFloat(numberOfChain) < fortyDollarsInBNB : parseFloat(numberOfChain) < 40 || numberOfChain === ""}
-                  >
-                    {
-                      (selectedCurrency.value === "BNB" ? parseFloat(numberOfChain) < fortyDollarsInBNB : parseFloat(numberOfChain) < 40) || numberOfChain === ""
-                        ? "Minimum purchase is $40"
-                        : "Buy Now"
+                    disabled={
+                      selectedCurrency.value === "BNB"
+                        ? parseFloat(numberOfChain) < fortyDollarsInBNB
+                        : parseFloat(numberOfChain) < 40 || numberOfChain === ""
                     }
+                  >
+                    {(selectedCurrency.value === "BNB"
+                      ? parseFloat(numberOfChain) < fortyDollarsInBNB
+                      : parseFloat(numberOfChain) < 40) || numberOfChain === ""
+                      ? "Minimum purchase is $40"
+                      : "Buy Now"}
                   </button>
                 )}
               </form>
             </div>
           </div>
 
-          <div className="bg-[#0f0f11] rounded-lg px-4 md:px-4 mt-3 text-center  flex justify-center cursor-pointer py-5 text-sm md:text-base  font-normal" onClick={histroyPopoverHandler}>
+          <div
+            className="bg-[#0f0f11] rounded-lg px-4 md:px-4 mt-3 text-center  flex justify-center cursor-pointer py-5 text-sm md:text-base  font-normal"
+            onClick={histroyPopoverHandler}
+          >
             History Of Your Transactions
           </div>
-          {histroyPopover && <Histroy histroyPopoverHandler={histroyPopoverHandler} />}
+          {histroyPopover && (
+            <Histroy histroyPopoverHandler={histroyPopoverHandler} />
+          )}
 
           <div className=" bg-[#0f0f11] rounded-lg px-4 md:px-4 mt-3">
             <button
@@ -711,7 +729,6 @@ export default function Presale() {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
@@ -733,9 +750,6 @@ const TimeBlock = ({ label, value }) => {
     </div>
   );
 };
-
-
-
 
 // {tab === "credit" && (
 //   <form onSubmit={BuyNow}>
