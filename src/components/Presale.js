@@ -315,10 +315,10 @@ export default function Presale() {
       return;
     }
     if (selectedCurrency.value === "BNB") {
-      args = [parseUnits(numberOfChain, 18), 0];
+      args = [parseUnits(numberOfChain, 18), 1];
       // args = [parseUnits(numberOfChain, 18)]
     } else {
-      args = [numberOfChain, 0];
+      args = [numberOfChain, 1];
       // args = [parseUnits(numberOfChain, 6), 2]
     }
 
