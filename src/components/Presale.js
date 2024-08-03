@@ -429,7 +429,7 @@ export default function Presale() {
               <div className="absolute text-center -top-7 -right-2 md:-top-7 md:-right-7 bg-[#0f0f11] px-3 py-1 rounded-lg">
                 <p className="text-xs md:text-sm">Next Price </p>
                 <h1 className="text-[#cc3cd9] text-base md:text-lg font-semibold">
-                  $0.0321
+                  $0.012
                 </h1>
               </div>
             </div>
@@ -513,7 +513,7 @@ export default function Presale() {
 
             {/* <div className=" h-1 w-full bg-[#cc3cd9] rounded-full" /> */}
             <h1 className="text-center text-sm md:text-base font-medium">
-              1 REBEL = <span className="font-bold"> $0.03117 </span>{" "}
+              1 REBEL = <span className="font-bold"> $0.008 </span>{" "}
             </h1>
 
             <div className="flex justify-end mt-4">
