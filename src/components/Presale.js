@@ -169,7 +169,7 @@ export default function Presale() {
   const getRebelCount = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xA520698280658E9Da62Db32575b2236b22255bC4",
       functionName: "users",
       args: [address],
     });
@@ -187,7 +187,7 @@ export default function Presale() {
         abi: tokenABI,
         functionName: "approve",
         account: address,
-        args: ["0x871283AF67B976e0b76dBBD94225af3D187a7f40", tokenAmount],
+        args: ["0xA520698280658E9Da62Db32575b2236b22255bC4", tokenAmount],
       });
 
       // Execute the transaction
@@ -244,7 +244,7 @@ export default function Presale() {
       }
       // Simulate the contract transaction to ensure it's likely to succeed
       const { request } = await simulateContract(config, {
-        address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+        address: "0xA520698280658E9Da62Db32575b2236b22255bC4",
         abi: contractABI,
         functionName: buySCFn[selectedCurrency.value],
         account: address,
@@ -324,7 +324,7 @@ export default function Presale() {
 
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xA520698280658E9Da62Db32575b2236b22255bC4",
       functionName: currencySCFn[selectedCurrency.value],
       args: args,
     });
@@ -363,7 +363,7 @@ export default function Presale() {
   const userHistory = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xA520698280658E9Da62Db32575b2236b22255bC4",
       functionName: "users",
       args: [address],
     });
@@ -391,7 +391,7 @@ export default function Presale() {
   const getUsdRaised = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xA520698280658E9Da62Db32575b2236b22255bC4",
       functionName: "totalRaised",
     });
     const finalResult = result != 0n ? Number(result) / 1e6 : 0;
