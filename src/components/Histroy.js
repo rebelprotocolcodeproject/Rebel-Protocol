@@ -20,7 +20,7 @@ export default function Histroy({ histroyPopoverHandler }) {
   const userHistory = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0xFd43fAC1E6A312c2F2dd42C7910ABBc512a87D6C",
+      address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
       functionName: "users",
       args: [address],
     });
