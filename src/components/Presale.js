@@ -179,7 +179,8 @@ export default function Presale() {
     setUserRebelCount(finalResult);
   };
 
-  const Approve = async (tokenAddress, tokenAmount) => {
+  const Approve = async (tokenAddress) => {
+    let tokenAmount = parseUnits(numberOfChain.toString(), 18)
     try {
       // Simulate the contract transaction to ensure it's likely to succeed
       const { request } = await simulateContract(config, {
@@ -214,7 +215,7 @@ export default function Presale() {
         alert("Purchase amount must be greater than $40.");
         return;
       }
-      args = [parseUnits(numberOfChain.toString(), 6)];
+      args = [parseUnits(numberOfChain.toString(), 18)];
     }
 
     // Ensure address and selectedCurrency are defined
@@ -240,7 +241,7 @@ export default function Presale() {
         } else {
           tokenAddress = "0xCd1517a0A6a2f9AA5bA53Bb4f007aF402B829f45"; // USDC Address Here
         }
-        await Approve(tokenAddress, args[0]);
+        await Approve(tokenAddress);
       }
       // Simulate the contract transaction to ensure it's likely to succeed
       const { request } = await simulateContract(config, {
@@ -309,19 +310,13 @@ export default function Presale() {
   // };
 
   const currencyAmountSC = async () => {
-    let args = [];
+
     if (!numberOfChain || isNaN(numberOfChain) || Number(numberOfChain) <= 0) {
       setCurrencyAmount(0);
       return;
-    }
-    if (selectedCurrency.value === "BNB") {
-      args = [parseUnits(numberOfChain, 18), 1];
-      // args = [parseUnits(numberOfChain, 18)]
-    } else {
-      args = [numberOfChain, 1];
-      // args = [parseUnits(numberOfChain, 6), 2]
-    }
+    } 
 
+    let args = [parseUnits(numberOfChain, 18), 1];
     const result = await readContract(config, {
       abi: contractABI,
       address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
@@ -331,7 +326,7 @@ export default function Presale() {
     if (selectedCurrency.value === "BNB") {
       setCurrencyAmount(formatUnits(result, 18));
     } else {
-      setCurrencyAmount(formatUnits(result, 12));
+      setCurrencyAmount(formatUnits(result, 18));
     }
   };
 
@@ -368,8 +363,8 @@ export default function Presale() {
       args: [address],
     });
     const bnbResult = result[0] != 0n ? Number(result[0]) / 1e18 : 0;
-    const usdtResult = result[1] != 0n ? Number(result[1]) / 1e6 : 0;
-    const usdcResult = result[2] != 0n ? Number(result[2]) / 1e6 : 0;
+    const usdtResult = result[1] != 0n ? Number(result[1]) / 1e18 : 0;
+    const usdcResult = result[2] != 0n ? Number(result[2]) / 1e18 : 0;
     const totalpurchasedToken = result[5] != 0n ? Number(result[5]) / 1e18 : 0;
     setTotalBNB(bnbResult);
     setTotalUSDT(usdtResult);
