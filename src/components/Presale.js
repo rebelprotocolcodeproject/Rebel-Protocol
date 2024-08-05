@@ -316,7 +316,15 @@ export default function Presale() {
       return;
     } 
 
-    let args = [parseUnits(numberOfChain, 18), 0];
+    const currentstage = await readContract(config, {
+      abi: contractABI,
+      address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
+      functionName: "currentStage",
+    });
+    console.log("Current stage " , currentstage);
+    
+
+    let args = [parseUnits(numberOfChain, 18), currentstage];
     const result = await readContract(config, {
       abi: contractABI,
       address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
