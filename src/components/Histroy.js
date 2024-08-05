@@ -25,8 +25,8 @@ export default function Histroy({ histroyPopoverHandler }) {
       args: [address],
     });
     const bnbResult = result[0] != 0n ? Number((result[0])) / 1e18 : 0;
-    const usdtResult = result[1] != 0n ? Number((result[1])) / 1e6 : 0;
-    const usdcResult = result[2] != 0n ? Number((result[2])) / 1e6 : 0;
+    const usdtResult = result[1] != 0n ? Number((result[1])) / 1e18 : 0;
+    const usdcResult = result[2] != 0n ? Number((result[2])) / 1e18 : 0;
     const totalpurchasedToken = result[5] != 0n ? Number((result[5])) / 1e18 : 0;
     setTotalBNB(bnbResult);
     setTotalUSDT(usdtResult.toFixed(2));
