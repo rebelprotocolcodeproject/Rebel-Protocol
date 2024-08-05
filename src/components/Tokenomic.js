@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
 import Image from 'next/image';
-import logo from "/public/images/otherimages/logo50.png"
+import logo from "/public/logo192.png"
 
 
 export default function Tokenomic() {
- 
+
 
 
   return (
@@ -18,7 +18,7 @@ export default function Tokenomic() {
           <Image
             src={logo}
             alt="logo"
-            className="w-[60%] rounded-full"
+            className="w-[60%] rounded-full border-8 border-white p-12"
             width={100}
             height={100}
             priority
@@ -74,7 +74,7 @@ export default function Tokenomic() {
   )
 }
 
-const Card = ({ text, percentage,subtext }) => {
+const Card = ({ text, percentage, subtext }) => {
   return (
     <div className="relative bg-[#0f0f11]/90 rounded-lg shadow-lg p-4 w-full h-full">
       <div className="text-base md:text-base text-white font-medium">{text}</div>
