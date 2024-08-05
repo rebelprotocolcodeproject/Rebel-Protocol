@@ -214,7 +214,7 @@ export default function Presale() {
         alert("Purchase amount must be greater than $40.");
         return;
       }
-      args = [parseUnits(numberOfChain.toString(), 6)];
+      args = [parseUnits(numberOfChain.toString(), 18)];
     }
 
     // Ensure address and selectedCurrency are defined
