@@ -169,7 +169,7 @@ export default function Presale() {
   const getRebelCount = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xFd43fAC1E6A312c2F2dd42C7910ABBc512a87D6C",
       functionName: "users",
       args: [address],
     });
@@ -187,7 +187,7 @@ export default function Presale() {
         abi: tokenABI,
         functionName: "approve",
         account: address,
-        args: ["0x871283AF67B976e0b76dBBD94225af3D187a7f40", tokenAmount],
+        args: ["0xFd43fAC1E6A312c2F2dd42C7910ABBc512a87D6C", tokenAmount],
       });
 
       // Execute the transaction
@@ -236,15 +236,15 @@ export default function Presale() {
       ) {
         let tokenAddress;
         if (selectedCurrency.value === "USDT") {
-          tokenAddress = "0x7A4E40Fa26ca4A383aa63A8916c4D843502aaE2A"; // USDT Address Here
+          tokenAddress = "0xBdA4eF6080b1AdA027CF78D7AB3fb0591e61382E"; // USDT Address Here
         } else {
-          tokenAddress = "0x7A4E40Fa26ca4A383aa63A8916c4D843502aaE2A"; // USDC Address Here
+          tokenAddress = "0xCd1517a0A6a2f9AA5bA53Bb4f007aF402B829f45"; // USDC Address Here
         }
         await Approve(tokenAddress, args[0]);
       }
       // Simulate the contract transaction to ensure it's likely to succeed
       const { request } = await simulateContract(config, {
-        address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+        address: "0xFd43fAC1E6A312c2F2dd42C7910ABBc512a87D6C",
         abi: contractABI,
         functionName: buySCFn[selectedCurrency.value],
         account: address,
@@ -324,7 +324,7 @@ export default function Presale() {
 
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xFd43fAC1E6A312c2F2dd42C7910ABBc512a87D6C",
       functionName: currencySCFn[selectedCurrency.value],
       args: args,
     });
@@ -363,7 +363,7 @@ export default function Presale() {
   const userHistory = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xFd43fAC1E6A312c2F2dd42C7910ABBc512a87D6C",
       functionName: "users",
       args: [address],
     });
@@ -391,7 +391,7 @@ export default function Presale() {
   const getUsdRaised = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0x871283AF67B976e0b76dBBD94225af3D187a7f40",
+      address: "0xFd43fAC1E6A312c2F2dd42C7910ABBc512a87D6C",
       functionName: "totalRaised",
     });
     const finalResult = result != 0n ? Number(result) / 1e6 : 0;
