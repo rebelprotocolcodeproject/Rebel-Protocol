@@ -169,7 +169,7 @@ export default function Presale() {
   const getRebelCount = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
+      address: "0xe14551815a3D2987E0aB1FF0a5f938eb58d65baB",
       functionName: "users",
       args: [address],
     });
@@ -188,7 +188,7 @@ export default function Presale() {
         abi: tokenABI,
         functionName: "approve",
         account: address,
-        args: ["0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D", tokenAmount],
+        args: ["0xe14551815a3D2987E0aB1FF0a5f938eb58d65baB", tokenAmount],
       });
 
       // Execute the transaction
@@ -237,15 +237,15 @@ export default function Presale() {
       ) {
         let tokenAddress;
         if (selectedCurrency.value === "USDT") {
-          tokenAddress = "0xBdA4eF6080b1AdA027CF78D7AB3fb0591e61382E"; // USDT Address Here
+          tokenAddress = "0x55d398326f99059fF775485246999027B3197955"; // USDT Address Here
         } else {
-          tokenAddress = "0xCd1517a0A6a2f9AA5bA53Bb4f007aF402B829f45"; // USDC Address Here
+          tokenAddress = "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d "; // USDC Address Here
         }
         await Approve(tokenAddress);
       }
       // Simulate the contract transaction to ensure it's likely to succeed
       const { request } = await simulateContract(config, {
-        address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
+        address: "0xe14551815a3D2987E0aB1FF0a5f938eb58d65baB",
         abi: contractABI,
         functionName: buySCFn[selectedCurrency.value],
         account: address,
@@ -314,18 +314,18 @@ export default function Presale() {
     if (!numberOfChain || isNaN(numberOfChain) || Number(numberOfChain) <= 0) {
       setCurrencyAmount(0);
       return;
-    } 
+    }
 
     const currentstage = await readContract(config, {
       abi: contractABI,
-      address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
+      address: "0xe14551815a3D2987E0aB1FF0a5f938eb58d65baB",
       functionName: "currentStage",
     });
-  
+
     let args = [parseUnits(numberOfChain, 18), currentstage];
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
+      address: "0xe14551815a3D2987E0aB1FF0a5f938eb58d65baB",
       functionName: currencySCFn[selectedCurrency.value],
       args: args,
     });
@@ -364,7 +364,7 @@ export default function Presale() {
   const userHistory = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
+      address: "0xe14551815a3D2987E0aB1FF0a5f938eb58d65baB",
       functionName: "users",
       args: [address],
     });
@@ -392,7 +392,7 @@ export default function Presale() {
   const getUsdRaised = async () => {
     const result = await readContract(config, {
       abi: contractABI,
-      address: "0xe51dEEE6AbDAF7Bc5620B84a81c031e0445E013D",
+      address: "0xe14551815a3D2987E0aB1FF0a5f938eb58d65baB",
       functionName: "totalRaised",
     });
     const finalResult = result != 0n ? Number(result) / 1e6 : 0;
