@@ -5,7 +5,7 @@ import { FaTelegram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { Link, Link as ScrollLink } from 'react-scroll';
-import logo from '/public/logo.png'
+import logo from '/public/images/logo.png'
 import Image from 'next/image';
 import { useAccount, useDisconnect } from "wagmi";
 import { IoCopySharp } from "react-icons/io5";
@@ -59,7 +59,7 @@ export default function NavBar() {
             <a href="https://x.com/rebelprotocol" target="_blank" className="hover:text-[#cc3cd9] text-2xl"><FaSquareXTwitter /></a>
           </div>
           {/* {isConnected && */}
-         
+
           {isConnected && (
             <div className='flex items-center gap-3'>
               <div className=" flex relative  bg-[#cc3cd9]/10  rounded px-3">
@@ -71,8 +71,8 @@ export default function NavBar() {
                     height={100}
                     priority />
                   <h1 className="font-semibold break-all">
-                     {/* {address.slice(0, 10)}... */}
-                     {address ? address.slice(0, 10) : "No address"}
+                    {/* {address.slice(0, 10)}... */}
+                    {address ? address.slice(0, 10) : "No address"}
                   </h1>
                 </div>
 
@@ -170,4 +170,4 @@ export default function NavBar() {
   )
 }
 
-{/*  */}
+{/*  */ }

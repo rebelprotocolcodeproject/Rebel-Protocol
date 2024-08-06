@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image';
-import logo from "/public/logo192.png"
+import logo from "/public/images/logo192.png"
 
 
 export default function Tokenomic() {

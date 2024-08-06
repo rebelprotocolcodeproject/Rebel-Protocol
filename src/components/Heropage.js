@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import '../style/HeroPage.css'
 import Image from 'next/image';
-import logo from '/public/logo192.png'
+import logo from '/public/images/logo192.png'
 
 export default function Heropage() {
 
@@ -65,26 +65,26 @@ export default function Heropage() {
     <>
       <div className='relative px-4 sm:px-7  lg:px-40 grid grid-cols-1 md:grid-cols-2   gap-7 lg:gap-16 pt-20 md:py-10 lg:py-28 overflow-hidden'>
 
-      <div className="flex justify-center items-center">
-      <motion.div
-        className="relative px-10 xl:px-16 py-12 xl:py-20 w-[70%] md:w-[75%]"
-        initial={{ x: '-100vw', rotate: 0 }}
-        animate={controls}
-      >
-        <motion.div
-          className="rounded-full border-[0.4rem] md:border-[0.6rem] xl:border-[0.7rem] border-white absolute inset-0"
-          style={{ rotate: 0 }}
-        />
-        <Image src={logo} alt="Logo" width={1000} height={1000} className='h-full w-full' />
-        {/* <div className="absolute inset-0 hidden lg:flex justify-center items-end bottom-6">
+        <div className="flex justify-center items-center">
+          <motion.div
+            className="relative px-10 xl:px-16 py-12 xl:py-20 w-[70%] md:w-[75%]"
+            initial={{ x: '-100vw', rotate: 0 }}
+            animate={controls}
+          >
+            <motion.div
+              className="rounded-full border-[0.4rem] md:border-[0.6rem] xl:border-[0.7rem] border-white absolute inset-0"
+              style={{ rotate: 0 }}
+            />
+            <Image src={logo} alt="Logo" width={1000} height={1000} className='h-full w-full' />
+            {/* <div className="absolute inset-0 hidden lg:flex justify-center items-end bottom-6">
           <div className="text-center flex flex-col text-white text-base font-serif -gap-1">
             <span>REBEL</span>
             <span>PROTOCOL</span>
             
           </div>
         </div> */}
-      </motion.div>
-    </div>
+          </motion.div>
+        </div>
 
         {/* <div className="flex justify-center items-center">
           <motion.div
@@ -101,8 +101,8 @@ export default function Heropage() {
           </motion.div>
          
         </div> */}
-       
-{/* <div className="flex justify-center items-center">
+
+        {/* <div className="flex justify-center items-center">
       <motion.div
         className="relative px-16 py-20 w-[80%]"
         initial={{ x: '-100vw', rotate: 0 }}

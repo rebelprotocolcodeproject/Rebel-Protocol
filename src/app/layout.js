@@ -4,7 +4,7 @@ import "./globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum, base, sepolia , bscTestnet} from "wagmi/chains";
+import { bsc } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +14,9 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 const config = getDefaultConfig({
-  appName: "My RainbowKit App",
-  projectId: "YOUR_PROJECT_ID",
-  chains: [mainnet, polygon, optimism, arbitrum, base, sepolia, bscTestnet],
+  appName: "Rebel Protocol",
+  projectId: "5277be63c571c86d1ad7b9001937758a",
+  chains: [bsc],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
 

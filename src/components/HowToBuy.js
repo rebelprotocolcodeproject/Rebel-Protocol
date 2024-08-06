@@ -8,7 +8,7 @@ import '../style/HowToBuy.css'
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Image from "next/image";
-import logo from '/public/logo192.png'
+import logo from '/public/images/logo192.png'
 
 export default function HowToBuy({ togglehandler }) {
 
@@ -91,7 +91,7 @@ export default function HowToBuy({ togglehandler }) {
                 ))}
               </div>
               <div className={`text-2xl text-white py-2 px-3 cursor-pointer ${currentIndex === StepsData.length - 1 ? 'border border-stone-500' : 'bg-[#cc3cd9]'}`} onClick={() => sliderRef.slickNext()}>
-                <TiArrowRightOutline/>
+                <TiArrowRightOutline />
               </div>
             </div>
 
@@ -104,12 +104,12 @@ export default function HowToBuy({ togglehandler }) {
 
 const NextArrow = ({ onClick }) => (
   <div className="hidden" onClick={onClick}>
-   
+
   </div>
 );
 
 const PrevArrow = ({ onClick }) => (
   <div className="hidden " onClick={onClick}>
-   
+
   </div>
 );

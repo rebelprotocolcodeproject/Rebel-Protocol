@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import digitalmoney from '/public/logo192.png'
+import digitalmoney from '/public/images/logo192.png'
 import { motion } from "framer-motion";
 import Image from 'next/image';
 
@@ -27,7 +27,7 @@ export default function Why() {
                                 }}
                                 className="p-4 bg-[#0f0f11] shadow-lg w-full md:w-96 py-6  px-4 rounded-lg">
                                 <figure className="flex justify-center">
-                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8bc69e6662935168f9_why__1.svg" alt="Inflation Protection" className="w-10 md:w-12" width={100} height={100} priority/>
+                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8bc69e6662935168f9_why__1.svg" alt="Inflation Protection" className="w-10 md:w-12" width={100} height={100} priority />
                                 </figure>
                                 <div className="content text-center mt-5">
                                     <h5 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-3">
@@ -41,21 +41,21 @@ export default function Why() {
                         </div>
 
                         <motion.div
-                                 initial={{
-                                    opacity: 0,
-                                    y: 0 ? -50 : 50
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    y: 0,
-                                    transition: {
-                                        duration: 1
-                                    }
-                                }}
-                                 className='flex justify-start'>
+                            initial={{
+                                opacity: 0,
+                                y: 0 ? -50 : 50
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                    duration: 1
+                                }
+                            }}
+                            className='flex justify-start'>
                             <div className="w-full md:w-96  p-4 bg-[#0f0f11]  shadow-lg py-6  px-4 rounded-lg">
                                 <figure className="flex justify-center">
-                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8c006e8cc4952969d0_why__2.svg" alt="Mix It Up" className="w-10 md:w-12" width={100} height={100} priority/>
+                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8c006e8cc4952969d0_why__2.svg" alt="Mix It Up" className="w-10 md:w-12" width={100} height={100} priority />
                                 </figure>
                                 <div className="content text-center mt-5">
                                     <h5 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-3">
@@ -85,7 +85,7 @@ export default function Why() {
                                 }}
                                 className="w-full md:w-96 p-4 bg-[#0f0f11] shadow-lg py-6  px-4 rounded-lg">
                                 <figure className="flex justify-center">
-                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66579af3d27f722a3fb5f46f_why__8.svg" alt="A Golden Foundation" className="w-10 md:w-12" width={100} height={100} priority/>
+                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66579af3d27f722a3fb5f46f_why__8.svg" alt="A Golden Foundation" className="w-10 md:w-12" width={100} height={100} priority />
                                 </figure>
                                 <div className="content text-center mt-5">
                                     <h5 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-3">
@@ -99,19 +99,19 @@ export default function Why() {
                         </div>
 
                         <motion.div
-                                initial={{
-                                    opacity: 0,
-                                    y: 0 ? -50 : 50
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    y: 0,
-                                    transition: {
-                                        duration: 1
-                                    }
-                                }}
-                                className='hidden lg:flex justify-center items-center'>
-                            <Image src={digitalmoney} alt="Gold Bar Icon" className="w-48 h-48" width={100} height={100} priority/>
+                            initial={{
+                                opacity: 0,
+                                y: 0 ? -50 : 50
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                    duration: 1
+                                }
+                            }}
+                            className='hidden lg:flex justify-center items-center'>
+                            <Image src={digitalmoney} alt="Gold Bar Icon" className="w-48 h-48" width={100} height={100} priority />
                         </motion.div>
 
                         <div className='flex justify-start'>
@@ -129,7 +129,7 @@ export default function Why() {
                                 }}
                                 className="w-full md:w-96 p-4 bg-[#0f0f11] shadow-lg rounded-lg py-6  px-4">
                                 <figure className="flex justify-center">
-                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66579af1063103d8ab631f1e_why__7.svg" alt="Grow Your Gold" className="w-10 md:w-12" width={100} height={100} priority/>
+                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66579af1063103d8ab631f1e_why__7.svg" alt="Grow Your Gold" className="w-10 md:w-12" width={100} height={100} priority />
                                 </figure>
                                 <div className="content text-center mt-5">
                                     <h5 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-3">
@@ -159,7 +159,7 @@ export default function Why() {
                                 }}
                                 className="w-full md:w-96 bg-[#0f0f11] shadow-lg rounded-lg py-6  px-4 ">
                                 <figure className="flex justify-center">
-                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8be5453e085ee0abb4_why__5.svg" alt="Compliant & Transparent" className="w-10 md:w-12" width={100} height={100} priority/>
+                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8be5453e085ee0abb4_why__5.svg" alt="Compliant & Transparent" className="w-10 md:w-12" width={100} height={100} priority />
                                 </figure>
                                 <div className="content text-center mt-5">
                                     <h5 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-3">
@@ -186,7 +186,7 @@ export default function Why() {
                                 }}
                                 className="w-full md:w-96 p-4 bg-[#0f0f11] shadow-lg rounded-lg py-6  px-4">
                                 <figure className="flex justify-center">
-                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8b8dda338a19ccbbbf_why__6.svg" alt="Safe & Secure" className="w-10 md:w-12" width={100} height={100} priority/>
+                                    <Image src="https://cdn.prod.website-files.com/6543866195b24e14b526bfc0/66578d8b8dda338a19ccbbbf_why__6.svg" alt="Safe & Secure" className="w-10 md:w-12" width={100} height={100} priority />
                                 </figure>
                                 <div className="content text-center mt-5">
                                     <h5 className="text-base md:text-lg lg:text-xl font-semibold text-white mb-3">
