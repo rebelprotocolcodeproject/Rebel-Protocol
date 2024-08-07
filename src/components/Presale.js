@@ -503,7 +503,7 @@ export default function Presale() {
               USD Raise:{" "}
               <span className="font-extrabold">
                 {" "}
-                ${usdRaised.toFixed(2)} / $2,086,196{" "}
+                ${usdRaised.toFixed(2)} / $425,000{" "}
               </span>
             </p>
 
