@@ -396,7 +396,7 @@ export default function Presale() {
       functionName: "totalRaised",
     });
     const finalResult = result != 0n ? Number(result) / 1e6 : 0;
-    const sellPercent = (100 * finalResult) / 2086196;
+    const sellPercent = (100 * finalResult) / 240000;
     setUsdRaised(finalResult);
     setPercentRaised(sellPercent.toFixed(2));
   };
@@ -494,7 +494,7 @@ export default function Presale() {
               USD Raise:{" "}
               <span className="font-extrabold">
                 {" "}
-                ${usdRaised.toFixed(2)} / $2,086,196{" "}
+                ${usdRaised.toFixed(2)} / $240,000{" "}
               </span>
             </p>
 
