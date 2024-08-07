@@ -206,7 +206,7 @@ export default function Presale() {
 
     // Convert the amount to the appropriate unit based on the selected currency
     if (selectedCurrency.value === "BNB") {
-      // Convert the amount to wei for BNB transactions
+      // Convert the amount to wei for BNB transaction
       const weiEquivalent = parseUnits(numberOfChain.toString(), "ether");
       args = [weiEquivalent];
       value = weiEquivalent; // Set the value to send with the transaction, as BNB transactions are payable
