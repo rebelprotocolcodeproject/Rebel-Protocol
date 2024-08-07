@@ -90,40 +90,31 @@ export default function Presale() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    // Calculate end time based on the fixed duration (15 days)
-    const endTime = localStorage.getItem("endTime");
-    if (!endTime) {
-      const now = new Date().getTime();
-      const fixedDuration = 15 * 24 * 60 * 60 * 1000; // 15 days in milliseconds
-      const calculatedEndTime = now + fixedDuration;
-      localStorage.setItem("endTime", calculatedEndTime);
-    }
-  }, []);
+  const staticTimestamp = 1724264375000;
+  const [remainingTime, setRemainingTime] = useState(null);
 
   useEffect(() => {
-    const countdown = setInterval(() => {
-      const endTime = localStorage.getItem("endTime");
-      if (!endTime) return;
-
-      const now = new Date().getTime();
-      const totalSeconds = Math.max((endTime - now) / 1000, 0);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = Math.floor(totalSeconds % 60);
-
-      setTime({ days, hours, minutes, seconds });
-
-      if (totalSeconds <= 0) {
-        clearInterval(countdown);
-      }
+    const interval = setInterval(() => {
+      const currentTime = Date.now();
+      const remaining = staticTimestamp - currentTime;
+      setRemainingTime(remaining > 0 ? remaining : 0);
     }, 1000);
 
-    return () => clearInterval(countdown);
-  }, []);
+    return () => clearInterval(interval);
+  }, [staticTimestamp]);
 
-  const formatTime = (value) => value.toString().padStart(2, "0");
+  const calculateCountdown = (time) => {
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+  };
+
+  const { days, hours, minutes, seconds } = calculateCountdown(
+    remainingTime || 0
+  );
 
   const chain = [
     { value: "BSC", imgSrc: BSC },
@@ -427,13 +418,13 @@ export default function Presale() {
                 Before Price Increase
               </h1>
               <div className="flex items-center">
-                <TimeBlock label="Days" value={formatTime(time.days)} />
-                <h3 className="font-semibold text-2xl px-2 lg:px-3">:</h3>
-                <TimeBlock label="Hours" value={formatTime(time.hours)} />
-                <h3 className="font-semibold text-2xl px-2 md:px-3">:</h3>
-                <TimeBlock label="Minutes" value={formatTime(time.minutes)} />
-                <h3 className="font-semibold text-2xl px-2 md:px-3">:</h3>
-                <TimeBlock label="Seconds" value={formatTime(time.seconds)} />
+                <TimeBlock label="Days" value={days} />
+                <h3 className="font-semibold  text-2xl px-2 lg:px-3">:</h3>
+                <TimeBlock label="Hours" value={hours} />
+                <h3 className=" font-semibold text-2xl px-2 md:px-3">:</h3>
+                <TimeBlock label="Minutes" value={minutes} />
+                <h3 className=" font-semibold text-2xl px-2 md:px-3">:</h3>
+                <TimeBlock label="Seconds" value={seconds} />
               </div>
 
               <div className="absolute text-center -top-7 -right-2 md:-top-7 md:-right-7 bg-[#0f0f11] px-3 py-1 rounded-lg">
@@ -748,13 +739,13 @@ const TimeBlock = ({ label, value }) => {
   return (
     <div className="text-center">
       <div className="flex items-center justify-center space-x-0.5 md:space-x-1">
-        {value.split("").map((digit, index) => (
-          <div key={index} className="p-2 lg:p-3 bg-[#cc3cd9] rounded-md">
-            <div className="inset-0 flex items-center justify-center text-2xl md:text-3xl lg:text-5xl font-bold text-white">
-              {digit}
-            </div>
+        {/* {value.split("").map((digit, index) => ( */}
+        <div className="p-2 lg:p-3 bg-[#cc3cd9] rounded-md">
+          <div className="inset-0 flex items-center justify-center text-2xl md:text-3xl lg:text-5xl font-bold text-white">
+            {value}
           </div>
-        ))}
+        </div>
+        {/* ))} */}
       </div>
       <span className="block mt-2 text-xs lg:text-sm font-medium">{label}</span>
     </div>
