@@ -90,7 +90,7 @@ export default function Presale() {
     return () => clearInterval(interval);
   }, []);
 
-  const staticTimestamp = 1724264375000;
+  const staticTimestamp = 1724739016000;
   const [remainingTime, setRemainingTime] = useState(null);
 
   useEffect(() => {
